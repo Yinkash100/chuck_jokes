@@ -88,8 +88,10 @@ const HomePage = () => {
                 jokesByCategory[category] = [];
               }
               jokesByCategory[category].push(joke);
+              return;
             });
           }
+          return;
         });
         setJokesByCategory(jokesByCategory);
         setMainJokeList(jokeList);
