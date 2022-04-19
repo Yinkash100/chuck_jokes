@@ -8,12 +8,16 @@ const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showNavBar, setShowNavBar] = useState(false);
 
-  const toggleShowNavBar = ()=>setShowNavBar(!showNavBar)
+  const toggleShowNavBar = () => setShowNavBar(!showNavBar);
   const toggleShowDropDown = () => setShowDropdown(!showDropdown);
 
   return (
     <div className="nav">
-      <ul className={"nav__list " + (showNavBar ? 'nav__list-show' : 'nav__list-hide')}>
+      <ul
+        className={
+          "nav__list " + (showNavBar ? "nav__list-show" : "nav__list-hide")
+        }
+      >
         <li className="nav__list--item">SO FUNKTIONIERT's</li>
         <li className="nav__list--item">SONDERANGEBOTE</li>
       </ul>
@@ -25,32 +29,32 @@ const Navbar = () => {
             <img src={arrowDown} alt="" className="nav__btn--icon" />
           </button>
           <div
-              className={
-                "nav__dropdown " + (showDropdown ? "nav__dropdown--show" : "")
-              }
+            className={
+              "nav__dropdown " + (showDropdown ? "nav__dropdown--show" : "")
+            }
           >
             <ul className={"nav__dropdown--list"}>
               <li
-                  className={"nav__dropdown--list-item"}
-                  onClick={toggleShowDropDown}
+                className={"nav__dropdown--list-item"}
+                onClick={toggleShowDropDown}
               >
                 My Published Jokes
               </li>
               <li
-                  className={"nav__dropdown--list-item"}
-                  onClick={toggleShowDropDown}
+                className={"nav__dropdown--list-item"}
+                onClick={toggleShowDropDown}
               >
                 My Saved Jokes
               </li>
               <li
-                  className={"nav__dropdown--list-item"}
-                  onClick={toggleShowDropDown}
+                className={"nav__dropdown--list-item"}
+                onClick={toggleShowDropDown}
               >
                 Account Information
               </li>
               <li
-                  className={"nav__dropdown--list-item"}
-                  onClick={toggleShowDropDown}
+                className={"nav__dropdown--list-item"}
+                onClick={toggleShowDropDown}
               >
                 Publish new joke
               </li>
@@ -59,7 +63,7 @@ const Navbar = () => {
         </li>
       </ul>
       <div className="nav__burger" onClick={toggleShowNavBar}>
-        <img src={Hamburger} alt=""/>
+        <img src={Hamburger} alt="" />
       </div>
     </div>
   );

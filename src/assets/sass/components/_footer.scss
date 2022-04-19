@@ -3,7 +3,7 @@
   background-size: cover;
   padding: 50px 100px;
   text-align: left;
-  @include respond(tab-port){
+  @include respond(tab-port) {
     padding: 37.5px 50px;
   }
   &__text {

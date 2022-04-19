@@ -50,30 +50,29 @@ const IconButton = ({
 };
 
 const IconButtonAlt = ({
-                      arrowButton,
-                      text,
-                      onClick,
-                      className,
-                      isDisabled,
-                      icon,
-                    }: IconButtonI) => {
+  arrowButton,
+  text,
+  onClick,
+  className,
+  isDisabled,
+  icon,
+}: IconButtonI) => {
   return (
-      <button
-          className={"icon-button " + className}
-          onClick={onClick}
-          disabled={isDisabled}
-      >
-        <img
-            src={icon}
-            alt=""
-            className={
-              "icon-button__icon icon-button__icon--alt " +
-              (arrowButton ? "icon-button__icon-animate-alt" : "")
-            }
-        />
-        <span className={"icon-button__text"}>{text}</span>
-
-      </button>
+    <button
+      className={"icon-button " + className}
+      onClick={onClick}
+      disabled={isDisabled}
+    >
+      <img
+        src={icon}
+        alt=""
+        className={
+          "icon-button__icon icon-button__icon--alt " +
+          (arrowButton ? "icon-button__icon-animate-alt" : "")
+        }
+      />
+      <span className={"icon-button__text"}>{text}</span>
+    </button>
   );
 };
 

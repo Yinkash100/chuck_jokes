@@ -9,7 +9,7 @@
     justify-content: flex-end;
     align-items: center;
 
-    @include respond(tab-land){
+    @include respond(tab-land) {
       display: block;
       cursor: pointer;
       position: absolute;
@@ -35,7 +35,7 @@
       font-weight: 600;
       font-size: 15.25px;
       line-height: 19px;
-      @include respond(tab-land){
+      @include respond(tab-land) {
         color: $black;
         padding: 10px 0;
         &:not(:last-child) {
@@ -52,7 +52,7 @@
 
   &__burger {
     display: none;
-    @include respond(tab-land){
+    @include respond(tab-land) {
       display: block;
       padding: 10px 15px;
     }

@@ -103,11 +103,11 @@ const HomePage = () => {
     const result = mainJokeList.filter((joke: JokeI) =>
       joke.value.includes(value)
     );
-    if(result.length === 1){
+    if (result.length === 1) {
       setCurrentJoke(result[0]);
       toggleShowSinglePage();
     } else {
-        if(showSinglePage) toggleShowSinglePage();
+      if (showSinglePage) toggleShowSinglePage();
     }
     setSearchResult(result);
   };
@@ -118,27 +118,27 @@ const HomePage = () => {
     jokeListRef.current?.scrollIntoView();
   };
 
-  const showJoke = (joke: JokeI, index: number)=>{
+  const showJoke = (joke: JokeI, index: number) => {
     setCurrentJoke(joke);
     setCurrentJokeIndex(index);
     toggleShowSinglePage();
-  }
+  };
 
-  const toggleShowSinglePage = ()=>setShowSinglePage(!showSinglePage)
+  const toggleShowSinglePage = () => setShowSinglePage(!showSinglePage);
 
   const prevJoke = () => {
-    if(currentJokeIndex > 0 ){
+    if (currentJokeIndex > 0) {
       const newIndex = currentJokeIndex - 1;
-      setCurrentJokeIndex(newIndex)
-      setCurrentJoke(currentJokeList[newIndex])
+      setCurrentJokeIndex(newIndex);
+      setCurrentJoke(currentJokeList[newIndex]);
     }
   };
 
   const nextJoke = () => {
-    if(currentJokeIndex < currentJokeList.length-1){
-      const newIndex = currentJokeIndex+1;
-      setCurrentJokeIndex(newIndex)
-      setCurrentJoke(currentJokeList[newIndex])
+    if (currentJokeIndex < currentJokeList.length - 1) {
+      const newIndex = currentJokeIndex + 1;
+      setCurrentJokeIndex(newIndex);
+      setCurrentJoke(currentJokeList[newIndex]);
     }
   };
 
@@ -261,7 +261,9 @@ const HomePage = () => {
                       <IconButton
                         text={"See Stats"}
                         className={"joke-card__button-btn"}
-                        onClick={() => {showJoke(joke, index)}}
+                        onClick={() => {
+                          showJoke(joke, index);
+                        }}
                         icon={ArrowRight}
                         arrowButton
                       />
@@ -283,67 +285,69 @@ const HomePage = () => {
       ) : (
         <div className="single">
           <div className="back__button">
-            <button className={"icon-button-rounded"} onClick={toggleShowSinglePage}>
+            <button
+              className={"icon-button-rounded"}
+              onClick={toggleShowSinglePage}
+            >
               <img src={CaretLeft} alt="" />
             </button>
           </div>
           <div className={"single__group"}>
-            {currentJoke && Object.keys(currentJoke).length !== 0 ?
-                (<div className="single__main">
-
-              <div className="single-joke">
-                <div className="single-joke__tags">
-                  <div className="">
-                    <span className="tag">
-                      {currentJoke.categories.length > 0
+            {currentJoke && Object.keys(currentJoke).length !== 0 ? (
+              <div className="single__main">
+                <div className="single-joke">
+                  <div className="single-joke__tags">
+                    <div className="">
+                      <span className="tag">
+                        {currentJoke.categories.length > 0
                           ? currentJoke.categories[0] + " Joke"
                           : "Uncategorized"}{" "}
-                    </span>
+                      </span>
+                    </div>
+                    <div className="single-joke__tags--main">
+                      <span className="single-joke__tags--main-dot"></span>
+                      Trending
+                    </div>
                   </div>
-                  <div className="single-joke__tags--main">
-                    <span className="single-joke__tags--main-dot"></span>
-                    Trending
+                  <div className="single-joke__head">
+                    {currentJoke.value.split(" ").slice(0, 3).join(" ")}
                   </div>
+                  <div className="single-joke__value">{currentJoke.value}</div>
                 </div>
-                <div className="single-joke__head">{currentJoke.value.split(" ").slice(0, 3).join(" ")}</div>
-                <div className="single-joke__value">
-                  {currentJoke.value}
+                <div className="joke-actions">
+                  <div className="joke-actions__left">
+                    <div className="joke-actions__vote">
+                      <button className="icon-button-rounded  thumbs-up">
+                        <img src={ThumbUp} alt="" />
+                      </button>
+                      328
+                    </div>
+                    <div>
+                      <button className="icon-button-rounded thumbs-down">
+                        <img src={ThumbDown} alt="" />
+                      </button>
+                      96
+                    </div>
+                  </div>
+                  <div className="joke-actions__right">
+                    <IconButtonAlt
+                      text="View More"
+                      className="btn category category-all jokes__button-btn"
+                      onClick={prevJoke}
+                      icon={CaretLeft}
+                      arrowButton
+                    />
+                    <IconButton
+                      text="Next Joke"
+                      className="btn category category-all jokes__button-btn"
+                      onClick={nextJoke}
+                      icon={CaretRight}
+                      arrowButton
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="joke-actions">
-                <div className="joke-actions__left">
-                  <div className="joke-actions__vote">
-                    <button className="icon-button-rounded  thumbs-up">
-                      <img src={ThumbUp} alt="" />
-                    </button>
-                    328
-                  </div>
-                  <div>
-                    <button className="icon-button-rounded thumbs-down">
-                      <img src={ThumbDown} alt="" />
-                    </button>
-                    96
-                  </div>
-                </div>
-                <div className="joke-actions__right">
-                  <IconButtonAlt
-                    text="View More"
-                    className="btn category category-all jokes__button-btn"
-                    onClick={prevJoke}
-                    icon={CaretLeft}
-                    arrowButton
-                  />
-                  <IconButton
-                    text="Next Joke"
-                    className="btn category category-all jokes__button-btn"
-                    onClick={nextJoke}
-                    icon={CaretRight}
-                    arrowButton
-                  />
-                </div>
-              </div>
-            </div>)
-                : null }
+            ) : null}
             <div className="single__sidebar">
               <div className="single__sidebar--title">
                 Top 10 Joke of the Week
