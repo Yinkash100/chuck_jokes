@@ -1,0 +1,48 @@
+@import "abstracts/fonts";
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+@import "base/animations";
+
+@import "components/Base/button";
+@import "components/navbar";
+@import "components/footer";
+
+@import "pages/homepage";
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  font-family: Montserrat, sans-serif;
+  line-height: 1.5rem;
+  max-width: 1365px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  font-size: 1.025em;
+  transform: translateY(-0.05rem);
+}
+li {
+  list-style-type: none;
+}

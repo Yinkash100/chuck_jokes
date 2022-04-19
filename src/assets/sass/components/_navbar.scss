@@ -1,0 +1,132 @@
+.nav {
+  background: $black;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  &__list {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    @include respond(tab-land){
+      display: block;
+      cursor: pointer;
+      position: absolute;
+      width: 100%;
+      top: 56px;
+      right: 0;
+      background-color: $white;
+      color: $black;
+      animation: moveInTop 0.75s ease-out;
+      padding: 0 20px;
+      &-show {
+        display: block;
+      }
+      &-hide {
+        display: none;
+      }
+    }
+    &--item {
+      position: relative;
+      cursor: pointer;
+      color: $white;
+      padding: 0 20px;
+      font-weight: 600;
+      font-size: 15.25px;
+      line-height: 19px;
+      @include respond(tab-land){
+        color: $black;
+        padding: 10px 0;
+        &:not(:last-child) {
+          border-bottom: 1px solid rgba($dark-grey, 0.5);
+        }
+      }
+    }
+    &--main {
+      &-item {
+        position: relative;
+      }
+    }
+  }
+
+  &__burger {
+    display: none;
+    @include respond(tab-land){
+      display: block;
+      padding: 10px 15px;
+    }
+  }
+
+  &__btn {
+    background-color: $carton;
+    color: $white;
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 0.75rem;
+    &--image {
+      margin-right: 10px;
+    }
+    &--icon {
+      margin-left: 25px;
+      width: 0.75rem;
+      height: auto;
+    }
+  }
+
+  &__dropdown {
+    display: none;
+    position: absolute;
+    background: $white-two;
+    border-radius: 5px;
+    color: $black;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: 300;
+    top: 120%;
+    width: 184px;
+    text-align: left;
+    &--list {
+      &-item {
+        padding: 7.5px 5px;
+        &:not(:last-child) {
+          border-bottom: 1px solid rgba($dark-grey, 0.5);
+        }
+        &:hover {
+          font-weight: bold;
+          color: $deep-carton;
+        }
+      }
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      border-color: $white-two;
+      border: solid transparent;
+      border-bottom-color: white;
+      border-width: 7px;
+      margin-left: -10px;
+      top: -14px;
+      right: 15px;
+      z-index: 1;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      right: 15px;
+      top: -14px;
+      width: 0;
+      height: 0;
+      border: solid transparent;
+      border-width: 10px;
+      border-bottom-color: $white-two;
+      z-index: 0;
+    }
+
+    &--show {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.footer {
+  background: #5b5a5a url("../../image/footer_bg.png") no-repeat right top;
+  background-size: cover;
+  padding: 50px 100px;
+  text-align: left;
+  @include respond(tab-port){
+    padding: 37.5px 50px;
+  }
+  &__text {
+    text-transform: uppercase;
+    color: $white-two;
+    font-weight: bold;
+  }
+  &__button {
+    &--btn {
+      color: $pale-orange;
+      border: none;
+      background-color: transparent;
+    }
+  }
+}
