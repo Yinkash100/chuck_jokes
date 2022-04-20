@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Chuck Norris Jokes Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project, bootstrapped with [Create React App](https://github.com/facebook/create-react-app). is a React implementation 
+of [Chuck Norris API](https://api.chucknorris.io/). It allows you to get jokes, categorize the jokes
+search for jokes and like/ dislike jokes.
+
+Project was created using React, SCSS and Axios.
+
 
 ## Available Scripts
 
