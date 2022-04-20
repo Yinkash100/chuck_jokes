@@ -72,27 +72,38 @@ const HomePage = () => {
       .catch((error) => console.error(error.message));
   };
 
+  const sortJokesByCategory = (jokeList)=>{
+    const jokesByCategory = [];
+    jokesByCategory["uncategorized"] = [];
+    jokeList.map((joke) => {
+      if (joke.categories.length === 0) {
+        jokesByCategory["uncategorized"].push(joke);
+      } else {
+        joke.categories.map((category: string) => {
+          if (!jokesByCategory.hasOwnProperty(category)) {
+            jokesByCategory[category] = [];
+          }
+          jokesByCategory[category].push(joke);
+          return;
+        });
+      }
+
+      return joke;
+    });
+
+    return jokesByCategory;
+  }
+
   const getJokeList = async () => {
     return axios
       .get(`https://api.chucknorris.io/jokes/search?query=all`)
       .then((res) => {
-        const jokesByCategory = [];
-        jokesByCategory["uncategorized"] = [];
         let jokeList = res.data.result;
-        jokeList.map((joke) => {
-          if (joke.categories.length === 0) {
-            jokesByCategory["uncategorized"].push(joke);
-          } else {
-            joke.categories.map((category: string) => {
-              if (!jokesByCategory.hasOwnProperty(category)) {
-                jokesByCategory[category] = [];
-              }
-              jokesByCategory[category].push(joke);
-              return;
-            });
-          }
-          return;
-        });
+        jokeList = jokeList.map((joke)=>{
+          return {...joke, likes: 0, dislikes: 0 }
+        })
+        const jokesByCategory = sortJokesByCategory(jokeList);
+
         setJokesByCategory(jokesByCategory);
         setMainJokeList(jokeList);
         setJokeList(jokeList);
@@ -120,9 +131,10 @@ const HomePage = () => {
     jokeListRef.current?.scrollIntoView();
   };
 
-  const showJoke = (joke: JokeI, index: number) => {
+  const showJoke = (joke: JokeI) => {
+    const jokeIndex = jokeList.findIndex((o)=>o.id === joke.id);
     setCurrentJoke(joke);
-    setCurrentJokeIndex(index);
+    setCurrentJokeIndex(jokeIndex);
     toggleShowSinglePage();
   };
 
@@ -132,7 +144,7 @@ const HomePage = () => {
     if (currentJokeIndex > 0) {
       const newIndex = currentJokeIndex - 1;
       setCurrentJokeIndex(newIndex);
-      setCurrentJoke(currentJokeList[newIndex]);
+      setCurrentJoke(jokeList[newIndex]);
     }
   };
 
@@ -140,9 +152,36 @@ const HomePage = () => {
     if (currentJokeIndex < currentJokeList.length - 1) {
       const newIndex = currentJokeIndex + 1;
       setCurrentJokeIndex(newIndex);
-      setCurrentJoke(currentJokeList[newIndex]);
+      setCurrentJoke(jokeList[newIndex]);
     }
   };
+
+  const likeJoke = (joke)=>{
+    likeDislikeJoke(joke, "like");
+  }
+
+  const dislikeJoke = (joke)=>{
+    likeDislikeJoke(joke, "dislike");
+  }
+  const likeDislikeJoke = (joke, action)=>{
+    const newCurrentJokeList = [...currentJokeList];
+    const currentIndex = newCurrentJokeList.findIndex((o)=>o.id === joke.id);
+    action === 'like' ? newCurrentJokeList[currentIndex].likes += 1 :newCurrentJokeList[currentIndex].dislikes += 1
+    setCurrentJokeList(newCurrentJokeList);
+
+    // update MainJokeList
+    const newMainJokeList = [...mainJokeList];
+    const itemIndex = newMainJokeList.findIndex((o) => o.id === joke.id)
+
+    action === 'like' ? newMainJokeList[itemIndex].likes += 1 : newMainJokeList[itemIndex].dislikes += 1
+
+    // break new data into categories
+    const newJokesByCategory = sortJokesByCategory(newMainJokeList);
+
+    setMainJokeList(newMainJokeList);
+    setJokesByCategory(newJokesByCategory)
+    // setJokeList(newMainJokeList);
+  }
 
   useEffect(() => {
     (async () => {
@@ -264,7 +303,7 @@ const HomePage = () => {
                         text={"See Stats"}
                         className={"joke-card__button-btn"}
                         onClick={() => {
-                          showJoke(joke, index);
+                          showJoke(joke);
                         }}
                         icon={ArrowRight}
                         arrowButton
@@ -319,21 +358,21 @@ const HomePage = () => {
                 <div className="joke-actions">
                   <div className="joke-actions__left">
                     <div className="joke-actions__vote">
-                      <button className="icon-button-rounded  thumbs-up">
+                      <button className="icon-button-rounded  thumbs-up" onClick={()=>likeJoke(currentJoke)}>
                         <img src={ThumbUp} alt="" />
                       </button>
-                      328
+                      {currentJoke.likes}
                     </div>
                     <div>
-                      <button className="icon-button-rounded thumbs-down">
+                      <button className="icon-button-rounded thumbs-down" onClick={()=>dislikeJoke(currentJoke)}>
                         <img src={ThumbDown} alt="" />
                       </button>
-                      96
+                      {currentJoke.dislikes}
                     </div>
                   </div>
                   <div className="joke-actions__right">
                     <IconButtonAlt
-                      text="View More"
+                      text="Prev Joke"
                       className="btn category category-all jokes__button-btn"
                       onClick={prevJoke}
                       icon={CaretLeft}
