@@ -1,5 +1,5 @@
 @mixin respond($breakpoint) {
-  //tablets in potriate mode && phones in landscape
+  //tablets in portrait mode && phones in landscape
   @if $breakpoint == tab-port {
     @media (max-width: 576px) {
       @content;

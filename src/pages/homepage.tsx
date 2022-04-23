@@ -188,7 +188,7 @@ const HomePage = () => {
       await getJokeCategories();
       await getJokeList();
     })();
-  }, []);
+  }, );
 
   useEffect(() => {
     jokeList.length > 0

@@ -102,10 +102,8 @@
     &:before {
       content: "";
       position: absolute;
-      border-color: $white-two;
-      border: solid transparent;
+      border: 7px solid transparent;
       border-bottom-color: white;
-      border-width: 7px;
       margin-left: -10px;
       top: -14px;
       right: 15px;
@@ -119,8 +117,7 @@
       top: -14px;
       width: 0;
       height: 0;
-      border: solid transparent;
-      border-width: 10px;
+      border: 10px solid transparent;
       border-bottom-color: $white-two;
       z-index: 0;
     }

@@ -90,10 +90,8 @@
           &:before {
             content: "";
             position: absolute;
-            border-color: $white-two;
-            border: solid transparent;
+            border: 7px solid transparent;
             border-bottom-color: white;
-            border-width: 7px;
             top: -14px;
             left: 15px;
             z-index: 1;
@@ -106,8 +104,7 @@
             top: -14px;
             width: 0;
             height: 0;
-            border: solid transparent;
-            border-width: 7px;
+            border:  7px solid transparent;
             border-bottom-color: $white-two;
             z-index: 1;
           }
@@ -133,7 +130,7 @@
       color: $white-two;
       width: 206px;
       //height: 20px;
-      font-family: Montserrat;
+      font-family: Montserrat, sans-serif;
       font-size: 14px;
       font-weight: 600;
       font-stretch: normal;
@@ -224,7 +221,7 @@
         width: 100%;
         max-width: 206px;
         margin: 0 0 6px 8px;
-        font-family: Montserrat;
+        font-family: Montserrat, sans-serif;
         font-size: 16px;
         font-weight: 600;
         font-stretch: normal;
@@ -244,7 +241,7 @@
       max-width: 328px;
       //height:154px;
       margin: 6px 0 32px;
-      font-family: Montserrat;
+      font-family: Montserrat, sans-serif;
       font-size: 14px;
       font-weight: normal;
       font-stretch: normal;
